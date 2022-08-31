@@ -1,0 +1,12 @@
+image:
+  repository: peej11/shreddit-dockerized
+  tag: v1.1@sha256:036ba3a2b12a0ae75e94c32057879ba0ed70dea13c24a0ad874a591a01194fbb
+  pullPolicy: IfNotPresent
+  
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: true
+  
+podSecurityContext:
+  runAsUser: 1000
+  runAsGroup: 1000

@@ -1,0 +1,194 @@
+groups:
+  - name: "Shreddit Configuration"
+    description: "Configure Shreddit deployment"
+  - name: "Restart Policy"
+    description: "Configure when pod should be restarted in case of failure"
+
+questions:
+  - variable: CRON
+    label: "Cron schedule"
+    group: "Shreddit Configuration"
+    description: "Cron schedule to run on. Default is hourly."
+    schema:
+      type: string
+      default: "0 * * * *"
+
+  - variable: CLIENT_ID
+    label: "CLIENT_ID"
+    group: "Shreddit Configuration"
+    description: "Review https://github.com/x89/Shreddit#configuring-credentials for configuring your client_id and client_secret"
+    schema:
+      type: string
+      default: ""
+      required: true
+
+  - variable: CLIENT_SECRET
+    label: "CLIENT_SECRET"
+    group: "Shreddit Configuration"
+    description: "Review https://github.com/x89/Shreddit#configuring-credentials for configuring your client_id and client_secret"
+    schema:
+      type: string
+      default: ""
+      required: true
+
+  - variable: USERNAME
+    label: "USERNAME"
+    group: "Shreddit Configuration"
+    description: "Your Reddit username"
+    schema:
+      type: string
+      default: ""
+      required: true
+
+  - variable: PASSWORD
+    label: "PASSWORD"
+    group: "Shreddit Configuration"
+    description: "Your Reddit password"
+    schema:
+      type: string
+      default: ""
+      required: true
+
+  - variable: HOURS
+    label: "HOURS"
+    group: "Shreddit Configuration"
+    description: "How many hours of comments you want to keep"
+    schema:
+      type: int
+      default: 24
+
+  - variable: MAX_SCORE
+    label: "MAX_SCORE"
+    group: "Shreddit Configuration"
+    description: "Max score, higher than this and it'll be kept."
+    schema:
+      type: int
+      default: 100
+
+  - variable: SORT
+    label: "SORT"
+    group: "Shreddit Configuration"
+    description: "Options: new, top, controversial, more?"
+    schema:
+      type: string
+      default: "new"
+
+  - variable: VERBOSE
+    label: "VERBOSE"
+    group: "Shreddit Configuration"
+    description: "Enables print statements to notify you of what's going on"
+    schema:
+      type: boolean
+      default: true
+
+  - variable: CLEAR_VOTE
+    label: "CLEAR_VOTE"
+    group: "Shreddit Configuration"
+    description: "Removes your vote before deleting the item"
+    schema:
+      type: boolean
+      default: false
+
+  - variable: ITEM
+    label: "ITEM"
+    group: "Shreddit Configuration"
+    description: "Options: comments, submitted, overview (both submissions and comments)"
+    schema:
+      type: string
+      default: "overview"
+
+  - variable: WHITELIST
+    label: "WHITELIST"
+    group: "Shreddit Configuration"
+    description: "Anything in this list won't be deleted, comma delimited. Spaces should work as .strip() is called after splitting."
+    schema:
+      type: string
+      default: "AskScience, TheCulture, redditdev, programming, charity, netsec"
+
+  - variable: WHITELIST_IDS
+    label: "WHITELIST_IDS"
+    group: "Shreddit Configuration"
+    description: "If you want any specific posts to be whitelisted stick 'em in here"
+    schema:
+      type: string
+      default: ""
+
+  - variable: MULTI_BLACKLIST
+    label: "MULTI_BLACKLIST"
+    group: "Shreddit Configuration"
+    description: "If you want to blacklist specific multireddits, add them here. Each one must be a list of 2 elements: username, multireddit"
+    schema:
+      type: string
+      default: ""
+
+  - variable: MULTI_WHITELIST
+    label: "MULTI_WHITELIST"
+    group: "Shreddit Configuration"
+    description: "If you want to whitelist specific multireddits, add them here. Each one must be a list of 2 elements: username, multireddit"
+    schema:
+      type: string
+      default: ""
+
+  - variable: TRIAL_RUN
+    label: "TRIAL_RUN"
+    group: "Shreddit Configuration"
+    description: "If you set this then no editing or deleting will be done but the output from the program will be shown as an example"
+    schema:
+      type: boolean
+      default: false
+
+  - variable: WHITELIST_DISTINGUISHED
+    label: "WHITELIST_DISTINGUISHED"
+    group: "Shreddit Configuration"
+    description: "Ignore distinguished comments."
+    schema:
+      type: boolean
+      default: true
+
+  - variable: WHITELIST_GILDED
+    label: "WHITELIST_GILDED"
+    group: "Shreddit Configuration"
+    description: "Ignore gilded (gold) comments."
+    schema:
+      type: boolean
+      default: true
+
+  - variable: NUKE_HOURS
+    label: "NUKE_HOURS"
+    group: "Shreddit Configuration"
+    description: "Delete everything older that this date, This ignores whitelists. Can be used as a second deletion, as in delete items older than 24 hours except on whitelisted subreddits but after 3 months delete everything."
+    schema:
+      type: int
+      default: 720
+
+  - variable: KEEP_A_COPY
+    label: "KEEP_A_COPY"
+    group: "Shreddit Configuration"
+    description: "Save a copy to disk of comments and posts before deleting them. Container storage is not mapped by default so be sure to map before turning on"
+    schema:
+      type: boolean
+      default: false
+
+  - variable: REPLACEMENT_FORMAT
+    label: "REPLACEMENT_FORMAT"
+    group: "Shreddit Configuration"
+    description: "Replacement text format. Defines what you want to edit deleted content with pre-deletion (to ensure it's not saved in their database)."
+    schema:
+      type: string
+      default: "deleted"
+
+  - variable: DEBUG
+    label: "DEBUG"
+    group: "Shreddit Configuration"
+    description: "Debug level, how much output you want. See: https://docs.python.org/3/library/logging.html#logging-levels"
+    schema:
+      type: string
+      default: "DEBUG"
+
+  - variable: BATCH_COOLDOWN
+    label: "BATCH_COOLDOWN"
+    group: "Shreddit Configuration"
+    description: "Batch cooldown. This controls how long (in seconds) to wait between each set of 1000 deletions."
+    schema:
+      type: int
+      default: 10

@@ -1,0 +1,5 @@
+apiVersion: v2
+version: 0.1.0
+name: shreddit
+type: application
+appVersion: "1.1.0"
